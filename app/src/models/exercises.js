@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
-var exercises = new mongoose.Schema({ name: String }, { collection: 'exercises' });
+var ExerciseSchema = new mongoose.Schema({ name: String }, { collection: 'exercises' });
 
-var Exercise = mongoose.model('Exercise', exercises);
+var Exercise = mongoose.model('Exercise', ExerciseSchema);
 
-module.exports = Exercise;
+exports.Exercise = Exercise;
+exports.ExerciseSchema = ExerciseSchema;

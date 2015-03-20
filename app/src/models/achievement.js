@@ -1,10 +1,11 @@
 var mongoose = require('mongoose');
 
-var achivements = new mongoose.Schema(
+var AchievementSchema = new mongoose.Schema(
     { exercise: mongoose.Schema.Types.ObjectId, category: mongoose.Schema.Types.ObjectId, measurement: Number },
     { collection: 'achievements' }
 );
 
-var Achivement = mongoose.model('Achivement', achivements);
+var Achivement = mongoose.model('Achivement', AchievementSchema);
 
-module.exports = Achivement;
+exports.Achievement = Achivement;
+exports.AchievementSchema = AchievementSchema;

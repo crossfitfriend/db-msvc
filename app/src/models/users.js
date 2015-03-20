@@ -2,7 +2,7 @@
  * Created by danh on 3/8/15.
  */
 var mongoose = require('mongoose');
-var users = new mongoose.Schema({
+var UserSchema = new mongoose.Schema({
         first_name: String,
         last_name: String,
         email: String,
@@ -12,11 +12,7 @@ var users = new mongoose.Schema({
         collection: 'users'
     });
 
-users.methods.getAchievements = function(){
-    return this.achievements;
-};
+var User = mongoose.model('User', UserSchema);
 
-var User = mongoose.model('User', users);
-
-
-module.exports = User;
+exports.UserSchema = UserSchema
+exports.User = User;

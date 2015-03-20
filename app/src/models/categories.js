@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 
-var categories = new mongoose.Schema({ name: String }, { collection: 'categories' });
+var CategorySchema = new mongoose.Schema({ name: String }, { collection: 'categories' });
 
-var Category = mongoose.model('Category', categories);
+var Category = mongoose.model('Category', CategorySchema);
 
-module.exports = Category;
+exports.Category = Category;
+exports.CategorySchema = CategorySchema;

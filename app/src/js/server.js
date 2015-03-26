@@ -5,8 +5,8 @@ var mongo = require('../lib/mongodrv');
 
 app.use(bodyParser.json());
 
-app.listen(3000, function(){
-  console.log("Listening on port 3000");
+app.listen(3001, function(){
+  console.log("Listening on port 3001");
 });
 
 // user 1-* achievements
@@ -17,10 +17,27 @@ app.listen(3000, function(){
 // category => {_id, name}
 // exercise => {_id, name}
 
-app.get('/achievements/:email', function(request, response){
-  var achievements = [];
-  mongo.getAchievementsForUser(request.params.email, function(err, achievements){
-    response.json(achievements);
+app.get('/users/:email', function(request, response){
+  mongo.executeForUser(request.params.email, function(err, user){
+    response.json(user);
+  });
+});
+
+app.get('/achievements/:id', function(request, response){
+  mongo.executeForAchievement(request.params.id, function(err, achievement){
+    response.json(achievement);
+  });
+});
+
+app.get('/exercises/:id', function(request, response){
+  mongo.executeForExercise(request.params.id, function(err, exercise){
+    response.json(exercise);
+  });
+});
+
+app.get('/categories/:id', function(request, response){
+  mongo.executeForCategory(request.params.id, function(err, category){
+    response.json(category);
   });
 });
 

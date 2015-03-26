@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 var Sentence = require('../models/sentences');
 var users = require('../models/users');
-var Exercise = require('../models/exercises');
+var exercises = require('../models/exercises');
+var categories = require('../models/categories');
 var achievements = require('../models/achievement');
 var mongoConfig = require('../config/mongo');
 
@@ -26,15 +27,20 @@ mongodrv.addSentence = function(msg) {
   });
 };
 
-mongodrv.getAchievementsForUser = function(email, callback) {
-  users.User.findOne({email: email}).select({'achievements':1, "_id": 0}).exec(function(err, result){
-    console.log("result.achievements are: "+result.achievements);
-    achievements.Achievement.find().where('_id').in(result.achievements).exec(callback);
-  });
+mongodrv.executeForUser = function(email, callback) {
+  users.User.findOne({email: email}).exec(callback);
 };
 
-mongodrv.getAchievement = function(id, callback){
+mongodrv.executeForAchievement = function(id, callback){
   achievements.Achievement.findById(id).exec(callback);
+};
+
+mongodrv.executeForCategory = function(id, callback){
+  categories.Category.findById(id).exec(callback);
+};
+
+mongodrv.executeForExercise = function(id, callback){
+  exercises.Exercise.findById(id).exec(callback);
 };
 
 module.exports = mongodrv;

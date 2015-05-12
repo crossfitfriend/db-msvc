@@ -13,20 +13,6 @@ mongoose.connect(mongoUrl);
 
 var mongodrv = {};
 
-mongodrv.firstSentence = function(){
-  Sentence.findOne({}, function(err, sentence){
-    console.log("Sentence is: "+sentence);
-  });
-};
-
-mongodrv.addSentence = function(msg) {
-  console.log("msg = " + msg);
-  var _sentence = new Sentence({message: msg});
-  _sentence.save(function(err, result){
-    console.log(result);
-  });
-};
-
 mongodrv.executeForUser = function(email, callback) {
   users.User.findOne({email: email}).exec(callback);
 };
